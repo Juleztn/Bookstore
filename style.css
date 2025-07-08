@@ -14,3 +14,50 @@ header img {
     width: 64px;
     filter: drop-shadow(4px 4px 4px #300113);
 }
+
+#book_one {
+    margin: 64px 250px;
+}
+
+.book-img {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+}
+
+.price-likes {
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: space-between;
+}
+
+.books-style {
+    background-color: #570323;
+    margin: 32px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    gap: 24px;
+}
+
+.heart-img {
+    width: 32px;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.book-infos {
+    width: -webkit-fill-available;
+    padding: 0 100px;
+}
+
+.infos {
+    display: flex;
+    justify-content: space-between;
+}
