@@ -15,8 +15,19 @@ header img {
     filter: drop-shadow(4px 4px 4px #300113);
 }
 
+h2 {
+    font-size: 48px;
+    font-family: 'Style Script';
+    font-weight: normal;
+}
+
+hr {
+    border-color: #C4C4C4;
+    border-top-width: inherit;
+}
+
 #book_one {
-    margin: 64px 250px;
+    margin: 64px 20vw;
 }
 
 .book-img {
@@ -33,17 +44,20 @@ header img {
 
 .books-style {
     background-color: #570323;
+    border-radius: 24px;
     margin: 32px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
-    gap: 24px;
+    gap: 40px;
 }
 
-.heart-img {
-    width: 32px;
+.price {
+    font-weight: bold;
+    font-size: 24px;
+    color: #bf4b77;
 }
 
 .likes {
@@ -52,12 +66,91 @@ header img {
     gap: 16px;
 }
 
-.book-infos {
-    width: -webkit-fill-available;
-    padding: 0 100px;
+.likes img {
+    width: 35px;
 }
 
-.infos {
+.likes img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.book-infos {
+    width: -webkit-fill-available;
     display: flex;
-    justify-content: space-between;
+    gap: 32px;
+    background-color: #330114;
+    padding: 16px 0;
+    border-radius: 16px;
+}
+
+.info-keys {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+    font-weight: bold;
+}
+
+.info-value {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.comments {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 24px 0;
+    background-color: #330114;
+    padding: 16px;
+    border-radius: 16px;
+}
+
+.send-comment {
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    padding: 8px;
+    width: 80%;
+    border-radius: 8px;
+    border: none;
+}
+
+input:focus {
+    box-shadow: inset 0 0 0 2px #BF4B6C;
+    outline: none !important;
+}
+
+button {
+    width: 20%;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #BF4B6C;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.comments-user-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+footer {
+    background-color: #570323;
+    height: 88px;
 }
