@@ -1,10 +1,12 @@
 let bookRef = document.getElementById('book_one');
+let commentInputRef = document.getElementsByClassName('input-comment-value');
 
 function init() {
     bookTemplate();
 }
 
 function bookTemplate() {
+    bookRef.innerHTML = '';
     for (let i = 0; i < 3; i++) {
         bookRef.innerHTML += renderBooks(i);
     }
@@ -36,8 +38,8 @@ function renderBooks(i) {
         <div class="comments">
             <h3>Kommentare:</h3>
             <div class="send-comment">
-                <input type="text"> 
-                <button>Senden</button>
+                <input class="input-comment-value" type="text" placeholder="Kommentar">
+                <button onclick="sendComment(${i})">Senden</button>
             </div>
             <hr>
             <div class="comment-section">${showComments(i)}</div>
@@ -61,12 +63,30 @@ function showComments(i) {
 
 function showIfLiked(i) {
     if (books[i].liked == true) {
-        return `<img src="../assets/icons/heart-solid.svg" alt="">`
+        return `<img onclick="changeLiked(${i})" src="../assets/icons/heart-solid.svg" alt="">`
     } else {
-        return `<img src="../assets/icons/heart-regular.svg" alt="">`
+        return `<img onclick="changeLiked(${i})" src="../assets/icons/heart-regular.svg" alt="">`
     }
 }
 
-console.table(books[0]);
-console.table(books[1]);
-console.table(books[2]);
+function changeLiked(i) {
+    if (books[i].liked == true) {
+        books[i].liked = false;
+        books[i].likes = books[i].likes - 1;
+        bookTemplate();
+    } else {
+        books[i].liked = true;
+        books[i].likes = books[i].likes + 1;
+        bookTemplate();
+    }
+
+}
+
+function sendComment(i) {
+    let commentInput = commentInputRef[i].value;
+    if (commentInput != "") {
+        let commentObj = {name: "Jule", comment: commentInput};
+        books[i].comments.push(commentObj);
+        bookTemplate();
+    }
+}
