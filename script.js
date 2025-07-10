@@ -1,7 +1,9 @@
 let bookRef = document.getElementById('book_one');
 let commentInputRef = document.getElementsByClassName('input-comment-value');
+let myBtn = document.getElementsByClassName('btn');
 
 function init() {
+    getFromLocalStorage();
     bookTemplate();
 }
 
@@ -39,7 +41,7 @@ function renderBooks(i) {
             <h3>Kommentare:</h3>
             <div class="send-comment">
                 <input class="input-comment-value" type="text" placeholder="Kommentar">
-                <button onclick="sendComment(${i})">Senden</button>
+                <button class="btn" onclick="sendComment(${i})">Senden</button>
             </div>
             <hr>
             <div class="comment-section">${showComments(i)}</div>
@@ -85,8 +87,32 @@ function changeLiked(i) {
 function sendComment(i) {
     let commentInput = commentInputRef[i].value;
     if (commentInput != "") {
-        let commentObj = {name: "Jule", comment: commentInput};
+        let commentObj = { name: "Jule", comment: commentInput };
         books[i].comments.push(commentObj);
         bookTemplate();
+        saveToLocalStorage();
+    }
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("comments1", JSON.stringify(books[0].comments));
+    localStorage.setItem("comments2", JSON.stringify(books[1].comments));
+    localStorage.setItem("comments3", JSON.stringify(books[2].comments));
+
+}
+
+function getFromLocalStorage() {
+    let commentObj1 = JSON.parse(localStorage.getItem("comments1"));
+    let commentObj2 = JSON.parse(localStorage.getItem("comments2"));
+    let commentObj3 = JSON.parse(localStorage.getItem("comments3"));
+
+    if (commentObj1 != null) {
+        books[0].comments = commentObj1;
+    }
+    if (commentObj2 != null) {
+        books[1].comments = commentObj2;
+    }
+    if (commentObj3 != null) {
+        books[2].comments = commentObj3;
     }
 }
