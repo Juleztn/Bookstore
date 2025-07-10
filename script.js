@@ -9,7 +9,7 @@ function init() {
 
 function bookTemplate() {
     bookRef.innerHTML = '';
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < books.length; i++) {
         bookRef.innerHTML += renderBooks(i);
     }
 }
@@ -75,10 +75,12 @@ function changeLiked(i) {
     if (books[i].liked == true) {
         books[i].liked = false;
         books[i].likes = books[i].likes - 1;
+        saveToLocalStorage();
         bookTemplate();
     } else {
         books[i].liked = true;
         books[i].likes = books[i].likes + 1;
+        saveToLocalStorage();
         bookTemplate();
     }
 
@@ -95,24 +97,27 @@ function sendComment(i) {
 }
 
 function saveToLocalStorage() {
-    localStorage.setItem("comments1", JSON.stringify(books[0].comments));
-    localStorage.setItem("comments2", JSON.stringify(books[1].comments));
-    localStorage.setItem("comments3", JSON.stringify(books[2].comments));
-
+    for (let i = 0; i < books.length; i++) {
+        localStorage.setItem(`comments${i + 1}`, JSON.stringify(books[i].comments));
+        localStorage.setItem(`liked${i + 1}`, JSON.stringify(books[i].liked));
+        localStorage.setItem(`likes${i + 1}`, JSON.stringify(books[i].likes));
+    }
 }
 
 function getFromLocalStorage() {
-    let commentObj1 = JSON.parse(localStorage.getItem("comments1"));
-    let commentObj2 = JSON.parse(localStorage.getItem("comments2"));
-    let commentObj3 = JSON.parse(localStorage.getItem("comments3"));
+    for (let i = 0; i < books.length; i++) {
+        let comments = JSON.parse(localStorage.getItem(`comments${i + 1}`));
+        let liked = JSON.parse(localStorage.getItem(`liked${i + 1}`));
+        let likes = JSON.parse(localStorage.getItem(`likes${i + 1}`));
 
-    if (commentObj1 != null) {
-        books[0].comments = commentObj1;
-    }
-    if (commentObj2 != null) {
-        books[1].comments = commentObj2;
-    }
-    if (commentObj3 != null) {
-        books[2].comments = commentObj3;
+        if (comments !== null) {
+            books[i].comments = comments;
+        }
+        if (liked !== null) {
+            books[i].liked = liked;
+        }
+        if (likes !== null) {
+            books[i].likes = likes;
+        }
     }
 }
